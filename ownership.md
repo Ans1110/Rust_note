@@ -189,4 +189,9 @@ println!("{}", s); //ok
     +-- stack 上是三個欄位(type: usize): 指標 + 長度 + 容量(pointer + length + capacity)
     |         
     +-- heap 上是真正的資料
-    
+
+| 面向 | Stack | Heap |
+|------|-----------|-----------|
+| 行為 | 通常為Copy | Move,Copy(clone) |
+| Borrow 可能性 | 完全可借用 | 透過&借用heap |
+| 所有權需求 | 無需特殊處理 | 需正確轉移/借用 ｜
