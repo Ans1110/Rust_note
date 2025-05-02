@@ -45,9 +45,9 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 
 **哪些型別會被move**
 
-1. String
-2. Vec<T>
-3. Box<T>
+    1. String
+    2. Vec<T>
+    3. Box<T>
 
 **如何避免move**
 
