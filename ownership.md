@@ -159,7 +159,7 @@ let y = x;
 
 - x和y儲存在stack
 - 這類型實現了Copy trait
-- 此處沒有所有權問題，不會觸發move
+- 此處沒有所有權問題，不會觸發move，不代表stack沒有move
 
 2. Heap 資料：Move
 
