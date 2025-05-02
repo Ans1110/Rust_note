@@ -5,14 +5,14 @@
 **1.每個值都有一個所有者(owner)**
 
 ```rust
-    let s1 = String::from("hello");
+let s1 = String::from("hello");
 ```
 
 **2.一個值在同一時間只能有一個所有者**
 
 ```rust
-    let s1 = String::from("hello");
-    let s2 = s1;
+let s1 = String::from("hello");
+let s2 = s1;
 ```
 
 **3.當所有者離開作用域時，值會被釋放(drop)**
@@ -20,27 +20,27 @@
 rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 
 ```rust
-    {
-        let s = String::from("hello");
-    } // s離開作用域，值會被釋放(drop)
+{
+    let s = String::from("hello");
+} // s離開作用域，值會被釋放(drop)
 ```
 
 *move vs copy*
 
 ```rust
-    let s1 = String::from("hello");
-    let s2 = s1; //move(所有權轉移)
-    println!("{}", s2); //ok
-    println!("{}", s1); //error s1的所有權已經轉移到s2
+let s1 = String::from("hello");
+let s2 = s1; //move(所有權轉移)
+println!("{}", s2); //ok
+println!("{}", s1); //error s1的所有權已經轉移到s2
 ```
 
 **copy**
 
 ```rust
-    let s1 = String::from("hello");
-    let s2 = s1.clone(); //copy
-    println!("{}", s2); //ok
-    println!("{}", s1); //ok
+let s1 = String::from("hello");
+let s2 = s1.clone(); //copy
+println!("{}", s2); //ok
+println!("{}", s1); //ok
 ```
 
 **哪些型別會被move**
@@ -55,8 +55,8 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 2. 使用深拷貝(clone)
 
 ```rust
-    let s1 = String::from("hello");
-    let s2 = s1.clone();
+let s1 = String::from("hello");
+let s2 = s1.clone();
 ```
 
 **借用(borrowing)及引用(reference):**
@@ -82,20 +82,20 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
     3. 解引用後更改的是"被引用的原始資料"
   
 ```rust
-    let mut s = String::from("hello");
-    let r1 = &mut s;
-    *r1 = String::from("world");
-    println!("{}", s);//output: world
+let mut s = String::from("hello");
+let r1 = &mut s;
+*r1 = String::from("world");
+println!("{}", s);//output: world
 ```
 
 **那改變引用變量本身呢？ans: 你不能“修改引用”去改變它指向什麼（引用一旦建立，它就固定指向那個對象），只能通過變量重新綁定到新的引用**
 
 ```rust
-    let x = 5;
-    let y = 10;
+let x = 5;
+let y = 10;
     
-    let mut r1 = &x;
-    r1 = &y;//correct 這是“重新綁定 r”，不是“修改引用”
+let mut r1 = &x;
+r1 = &y;//correct 這是“重新綁定 r”，不是“修改引用”
 ```
 
 **借用的應用:**
@@ -107,8 +107,8 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 **& 背後是什麼？（底層結構）**
 
 ```rust
-    let x = 42;
-    let r: &i32 = &x;
+let x = 42;
+let r: &i32 = &x;
 ```
 
 **代表:**
@@ -120,20 +120,20 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
     - rust會防止dangling references的產生
 
 ```rust
-    fn dangle() -> &String {
-        let s = String::from("hello");
-        &s //error: s will be dropped at the end of the function
-    }
+fn dangle() -> &String {
+    let s = String::from("hello");
+    &s //error: s will be dropped at the end of the function
+}
         
-    fn main() {
-        let r = dangle();
-    }
+fn main() {
+    let r = dangle();
+}
         
-    //correct version
-    fn no_dangle() -> String {
-        let s = String::from("hello");
-        s //return ownership
-    }
+//correct version
+fn no_dangle() -> String {
+    let s = String::from("hello");
+    s //return ownership
+}
 ```
 
 **3. 透過生命週期(lifetime)保證**
@@ -153,8 +153,8 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 1. Stack 資料：Copy，不會 Move
 
 ```rust
-    let x = 5;
-    let y = x;
+let x = 5;
+let y = x;
 ```
 
 - x和y儲存在stack
@@ -164,8 +164,8 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 2. Heap 資料：Move
 
 ```rust
-    let s1 = String::from("hello");
-    let s2 = s1;
+let s1 = String::from("hello");
+let s2 = s1;
 ```
 
 - String本身儲存在stack，但它指向的資料(真正的字串)儲存在heap
@@ -176,9 +176,9 @@ rust中的作用域不只是語法塊{}，也是"最後一次使用的位置"
 借用就是傳遞「stack 上的指標」，不會 move 或 clone 整個 heap 資料
 
 ```rust
-    let r = String::from("hi");// String: stack上的指標 -> heap上的資料
-    let s = &r;// r是stack上的指標，指向heap上的資料
-    println!("{}", s); //ok
+let r = String::from("hi");// String: stack上的指標 -> heap上的資料
+let s = &r;// r是stack上的指標，指向heap上的資料
+println!("{}", s); //ok
 ```
 
     Stack:               Heap:
