@@ -150,7 +150,7 @@ fn no_dangle() -> String {
 # 與stack和heap的關連:
 **值儲存在哪裡，會影響所有權行為**
 
-1. Stack 資料：Copy，不會 Move
+1. Stack 資料：Copy(此處為小型資料stack會自動copy)
 
 ```rust
 let x = 5;
@@ -159,7 +159,7 @@ let y = x;
 
 - x和y儲存在stack
 - 這類型實現了Copy trait
-- 沒有所有權問題，不會觸發move
+- 此處沒有所有權問題，不會觸發move
 
 2. Heap 資料：Move
 
