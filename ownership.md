@@ -1,6 +1,6 @@
 # Rust Ownership
 
-## rust ownership rules
+### rust ownership rules
 
 **1.每個值都有一個所有者(owner)**
 
