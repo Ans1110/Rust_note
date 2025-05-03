@@ -118,8 +118,8 @@ let r: &i32 = &x;
 1. r是一個"read-only"的pointer
 2. compiler會保證x活著的時候，r不會成為悬垂引用(dangling references)
     - dangling references:
-    - 指向已經釋放(drop)或不存在的記憶體
-    - rust會防止dangling references的產生
+      - 指向已經釋放(drop)或不存在的記憶體
+      - rust會防止dangling references的產生
 
 ```rust
 fn dangle() -> &String {
