@@ -437,3 +437,13 @@ if let是match的簡化版本，用於處理簡單的模式匹配(只處理某�
 | match | 可辯駁 + 多分支 |
 | 函式參數 | 不可辯駁 |
 | for 解構 | 不可辯駁 |
+
+## let-else
+
+可使let變為refutable pattern
+
+```rust
+    let x = Some(5);
+    let Some(y) = x else { return; };
+    println!("{}", y);
+```
