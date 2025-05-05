@@ -173,6 +173,21 @@ if let是match的簡化版本，用於處理簡單的模式匹配(只處理某�
     }
 ```
 
+## matches! macro
+
+可以將表達式與模式進行匹配，並返回bool值
+
+```rust
+    let x = Some(5);
+    assert!(matches!(x, Some(5)));//true
+    assert!(matches!(x, Some(6)));//false
+
+    let y = 'y';
+    assert!(matches!(y, 'x' | 'y' | 'z'));//true
+    assert!(matches!(y, 'a'..='z' | 'A'..='Z'));//true
+    
+```
+
 ## @(at) pattern
 
 @　允許我們在模式中綁定一個值，並同時進行模式匹配
